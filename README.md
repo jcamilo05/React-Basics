@@ -1,70 +1,91 @@
-# Getting Started with Create React App
+# React tutorial
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### This repo contain my notes about some small projects powered by react
 
-## Available Scripts
+### Create react
 
-In the project directory, you can run:
+To create a react app without need to setting up the application manually, you can type the following command, it is important to have pre install npm
 
-### `npm start`
+```javascript
+npx create-react-app name_of_aplication
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+```
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## React Hooks
 
-### `npm test`
+React hooks are functions React provide us to help us to complete various tasks
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Usestate
 
-### `npm run build`
+UseState is most basic hook, this works when we want to assign a value to a varible, the variable could be a string,an array or an object, the following is an example where useState is used to assign a string to a varible.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+But before UseState can be used, it must be called through an import as is show in the next
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```javascript
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+import React, { useState } from "react"
 
-### `npm run eject`
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+```javascript
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+import React from 'react';
+import { useState } from 'react';
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+const Error = ()=>{
+  let [title, setTitle] = useState("Random title")
+  const handler = () => { 
+    if(title === "Random title"){
+        setTitle("Hello world")
+    }else{
+        setTitle("Random title")
+    }
+ }
+  return <>
+    <h2>{title}</h2>
+    <button type='button' className='btn' onClick={handler}>Change title</button>
+    </>
+}
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+```
+#### React UseState with arrays
 
-## Learn More
+The following chunk of code shows how an array can be assigned to a variable and then each element is called through a map funcion.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```javaScript
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+const UseStateArray = ()=>{
+  const [people, setPeople] = useState(data);
+  const removeItem = (id) =>{
+      let newPerson = people.filter((person)=>person.id !== id)
+      setPeople(newPerson)
+  }
+  return(
+    <>
+      {
+        people.map((person)=>{
+          const {id, name} = person;
+          return(
+            <div key={id} className='item'>
+              <h4>{name}</h4>
+              <button onClick={()=> removeItem(id)}>Remove</button>
+            </div>
+          )
+        })
+      }
+      <button className="btn" onClick={()=>{setPeople([])}}>Clear items</button>
+    </>
+  )
+}l
 
-### Code Splitting
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+In the previous code a event handler was used, remember if you want to use a function inside the Onclick, is preferable to make use of an array function
 
-### Analyzing the Bundle Size
+The filter function used in the code obove works in the following way:
+1. An array must be passed and like map the filter will apply the condition typed 
+2. The filter will return an array with the items who fullfill the condition setted in the filter condition
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
 
-### Making a Progressive Web App
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
 
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
