@@ -80,11 +80,43 @@ const UseStateArray = ()=>{
 
 ```
 
-In the previous code a event handler was used, remember if you want to use a function inside the Onclick, is preferable to make use of an array function
+In the previous code a event handler was used, remember if you want to use a function inside the Onclick, is preferable to make use of an arrow function
 
 The filter function used in the code obove works in the following way:
-1. An array must be passed and like map the filter will apply the condition typed 
+1. An array must be passed and as map the filter will apply the condition typed in
 2. The filter will return an array with the items who fullfill the condition setted in the filter condition
+
+### UseState Object
+
+Usestate works in the similar way to objects, the following example shows a simple example where Usestate is used with a object.
+
+```javascript
+const UseStateObject = () =>{
+
+  const [person, setPerson] = useState({
+    name: 'Peter',
+    age: 24,
+    message: 'Hello world'
+  })
+
+  const changeMessage = ()=>{
+    setPerson({...person, message: 'Random Message'})
+  }
+
+  return(
+    <>
+      <h3>{person.name}</h3>
+      <h3>{person.age}</h3>
+      <h3>{person.message}</h3>
+      <button className="btn" onClick={changeMessage}> Change Message</button>
+    </>
+  )
+}
+
+```
+
+In the previous example the destructuring was used because otherwise the object would be replace totally by the object typed, so for example if the person wasn't destructured, then all the person would be replace by an object which contains just ```{message: Hello wolrI}```
+
 
 
 
